@@ -1,0 +1,185 @@
+/* Global Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7fafc;
+  }
+  
+  /* Flexbox layout for the dashboard */
+  .dashboard-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling beyond the container */
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: #2d3748;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding: 20px;
+    z-index: 20;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .sidebar.hidden {
+    transform: translateX(-100%);
+  }
+  
+  /* Sidebar for smaller screens */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 250px;
+      transform: translateX(-100%); /* Initially hidden on small screens */
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      padding: 20px;
+      background-color: #2d3748;
+    }
+  
+    .sidebar.open {
+      transform: translateX(0); /* Sidebar becomes visible when open */
+    }
+  }
+  
+  /* Content */
+  .content {
+    flex-grow: 1;
+    background-color: #edf2f7;
+    padding: 20px;
+    margin-left: 250px; /* Space for the sidebar */
+    transition: margin-left 0.3s ease-in-out;
+    overflow-y: auto; /* Ensure content scrolls when it overflows */
+  }
+  
+  .content.shifting {
+    margin-left: 0; /* Shift content left when the sidebar is open on mobile */
+  }
+  
+  /* Mobile content shift */
+  @media (max-width: 768px) {
+    .content {
+      margin-left: 0;
+    }
+  
+    .content.shifting {
+      margin-left: 250px; /* Adjust space for the sidebar when open */
+    }
+  }
+  
+  /* Table Styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  th {
+    background-color: #2b6cb0;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  td {
+    background-color: #fff;
+    color: #2d3748;
+  }
+  
+  td:hover {
+    background-color: #edf2f7;
+  }
+  
+  @media (max-width: 768px) {
+    table {
+      border: none;
+    }
+  
+    th, td {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+    th {
+      text-align: right;
+      padding-right: 20px;
+    }
+  
+    td {
+      padding-left: 50%;
+      position: relative;
+    }
+  
+    td:before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+  }
+  
+  /* Form Styles */
+  input,
+  select,
+  textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: #fff;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #3182ce;
+    outline: none;
+  }
+  
+  label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+  }
+  
+  /* Responsive Layout for mobile screens */
+  @media (max-width: 640px) {
+    .sidebar {
+      width: 100%; /* Full width for mobile */
+      height: 100%; /* Full height */
+    }
+  
+    .content {
+      margin-left: 0; /* Remove margin on small screens */
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .content.shifting {
+      margin-left: 0; /* Remove shifting space for mobile */
+    }
+  
+    .sidebar.open {
+      transform: translateX(0); /* Sidebar should be open and accessible on mobile */
+    }
+  }
+  
